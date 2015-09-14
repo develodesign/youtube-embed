@@ -15,7 +15,7 @@ $('.myImageContainer').youtubeEmbed();
 ```
 
 ## Other Usage Options
-#### None of these are required but allow for more customization]
+#### None of these are required but allow for more customization
 ```javascript
 $('.myImageContainer').youtubeEmbed({
     buttonClass: 'btn btn-primary',
