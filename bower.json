@@ -1,5 +1,5 @@
 {
-  "name": "youtube-embed",
+  "name": "youtube-embed-jquery",
   "version": "1.0.0",
   "main": [ "js/jquery.youtube-embed.js" ],
   "ignore":
