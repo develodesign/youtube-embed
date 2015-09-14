@@ -130,7 +130,7 @@
         setupEmbed: function()  {
             var videoUrl = 'https://www.youtube.com/embed/' + this.getVideoId() + '?feature=player_detailpage&rel=0&frameborder=0&modestbranding=1&showinfo=0&controls=0&autoplay=1';
             console.log(videoUrl);
-            var embedSetup = '<iframe width="560" height="315" src="'+ videoUrl +'" frameborder="0" toolbars="0" allowfullscreen></iframe>';
+            var embedSetup = '<iframe width="'+this.options.width+'" height="'+this.options.height+'" src="'+ videoUrl +'" frameborder="0" toolbars="0" allowfullscreen></iframe>';
             this.$element.append(embedSetup);
         },
 
