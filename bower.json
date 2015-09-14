@@ -1,7 +1,7 @@
 {
   "name": "Youtube-Embed",
   "version": "1.0.0",
-  "main": [ "js/youtube-embed.js" ],
+  "main": [ "js/jquery.youtube-embed.js" ],
   "ignore":
   [
     "README*"
