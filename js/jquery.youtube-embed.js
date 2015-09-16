@@ -14,9 +14,9 @@
 
     function youtubeEmbed (element, options) {
         this.element = element;
-        this.$button;
-        this.$image;
-        this.videoId;
+        this.$button = null;
+        this.$image = null;
+        this.videoId = null;
         this._name = pluginName;
         this._defaults = {
             buttonClass: 'btn btn-primary',
@@ -25,7 +25,7 @@
             autoPosition: true,
             width: null,
             height: null,
-            onComplete: null
+            onComplete: function(){ return true }
         };
         this.options = $.extend( {}, this._defaults, options );
         this.init();
