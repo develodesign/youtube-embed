@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test for jquery embed</title>
+	<style>
+		.youtube-container
+		{
+			display: inline-block;
+			width: 33%
+		}
+
+		.youtube-container img
+		{
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+
+		<div class="youtube-container">
+			<img src="http://placehold.it/350x150" data-youtube-id="olit-B5Yldc">
+		</div>
+
+		<div class="youtube-container">
+			<img src="http://placehold.it/350x150" data-youtube-id="5vPH6n7QERg">
+		</div>
+
+		<div class="youtube-container" >
+			<img src="http://placehold.it/350x150" data-youtube-id="hHkKJfcBXcw">
+		</div>
+
+	</div>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="js/jquery.youtube-embed.js"></script>
+<script>
+	$( function(){
+		$( '.youtube-container' ).youtubeEmbed();
+	});
+</script>
+</body>
+</html>
