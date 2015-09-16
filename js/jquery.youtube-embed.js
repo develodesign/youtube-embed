@@ -124,7 +124,7 @@
         },
 
         setupButton: function() {
-            this.$button =  $('<div/>')
+            this.$button =  $('<button/>')
                 .addClass( this.options.buttonClass )
                 .text( this.options.buttonText );
 
