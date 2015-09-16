@@ -16,6 +16,7 @@
         this.element = element;
         this.$button = null;
         this.$image = null;
+        this.$iframe = null;
         this.videoId = null;
         this._name = pluginName;
         this._defaults = {
@@ -42,6 +43,7 @@
              * If we have an valid id
              */
             if( this.setImageVideoAttributes() ) {
+
                 this.imageContainerToRelative();
                 this.setupButton();
                 if(this.options.autoPosition) {
@@ -65,8 +67,8 @@
          * Fire our onClick callbacks
          */
         getOnClickCallbacks: function() {
-            this.setupEmbed();
-            this.hideElements();
+
+            this.showVideo();
 
             // Now we have finished
             this.getOnCompleteCallbacks();
@@ -86,7 +88,13 @@
         /**
          * Hides the image and button attribute when playing.
          */
-        hideElements: function() {
+        showVideo: function() {
+
+            if( ! this.$iframe ){
+
+                this.renderIframe();
+            }
+
             this.$image.hide();
             this.$button.hide();
         },
@@ -128,15 +136,41 @@
         /**
          * Setups the youtube embed and adds it to the container $element
          */
-        setupEmbed: function()  {
+        renderIframe: function()  {
+
+            this.getIframeDimensions();
+
             var autoplayParam = '';
             if( this.options.autoplay ) {
                 autoplayParam = '&autoplay=1';
             }
+
             var videoUrl = 'https://www.youtube.com/embed/' + this.getVideoId() + '?feature=player_detailpage&rel=0&frameborder=0&modestbranding=1&showinfo=0&controls=0'+autoplayParam;
-            var embedSetup = '<iframe width="'+this.options.width+'" height="'+this.options.height+'" src="'+ videoUrl +'" frameborder="0" toolbars="0" allowfullscreen></iframe>';
-            this.$element.append(embedSetup);
+
+            this.$iframe = $( '<iframe width="'+this.options.width+'" height="'+this.options.height+'" src="'+ videoUrl +'" frameborder="0" toolbars="0" allowfullscreen></iframe>' );
+            this.$element.append( this.$iframe );
         },
+
+        /**
+         * Get the deminsions of the size the iframe should be
+         * If one is not defined in the options then use the image width and height
+         *
+         * @returns {{height: number, width: number}}
+         */
+        getIframeDimensions: function(){
+
+            if( ! this.options.width )
+                this.options.width = this.$image.width();
+
+            if( ! this.options.height )
+                this.options.height = this.$image.height();
+
+            return {
+                height: this.options.height,
+                width: this.options.width
+            }
+        },
+
 
         /**
          *
