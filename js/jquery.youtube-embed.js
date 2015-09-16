@@ -18,7 +18,15 @@
         this.$image;
         this.videoId;
         this._name = pluginName;
-        this._defaults = $.fn.youtubeEmbed.defaults;
+        this._defaults = {
+            buttonClass: 'btn btn-primary',
+            buttonText: 'Play Video',
+            autoplay: true,
+            autoPosition: true,
+            width: null,
+            height: null,
+            onComplete: null
+        };
         this.options = $.extend( {}, this._defaults, options );
         this.init();
     }
@@ -33,7 +41,7 @@
             /**
              * If we have an valid id
              */
-            if(this.setImageVideoAttributes() != false) {
+            if( this.setImageVideoAttributes() ) {
                 this.imageContainerToRelative();
                 this.setupButton();
                 if(this.options.autoPosition) {
@@ -87,23 +95,17 @@
         /**
          * Uses this.$element to find any images inside, for each one we loop through and try and find out data-youtube-id attribute.
          *
+         * @return boolean|string
          */
         setImageVideoAttributes: function() {
-            var currentInstance = this;
 
-            if ($(this.$element).children('img').length) {
-                $(this.$element).children('img').each(function (index, imgElement) {
-                    currentInstance.$image = $(imgElement);
-                    if (currentInstance.$image.attr('data-youtube-id')) {
-                        // Has a data-youtube-id, set it
-                        currentInstance.videoId = currentInstance.$image.attr('data-youtube-id');
-                    } else {
-                        return false;
-                    }
-                });
-            } else {
+            this.$image = this.$element.children('img');
+
+            if ( ! this.$image.length ) {
                 return false;
             }
+
+            return this.videoId = this.$image.data( 'youtube-id' );
         },
 
         /**
@@ -129,7 +131,7 @@
          */
         setupEmbed: function()  {
             var autoplayParam = '';
-            if(this.options.autoplay == true) {
+            if( this.options.autoplay ) {
                 autoplayParam = '&autoplay=1';
             }
             var videoUrl = 'https://www.youtube.com/embed/' + this.getVideoId() + '?feature=player_detailpage&rel=0&frameborder=0&modestbranding=1&showinfo=0&controls=0'+autoplayParam;
@@ -179,16 +181,6 @@
             }
         });
         return this;
-    };
-
-    $.fn.youtubeEmbed.defaults = {
-        buttonClass: 'btn btn-primary',
-        buttonText: 'Play Video',
-        autoplay: true,
-        autoPosition: true,
-        width: 560,
-        height: 315,
-        onComplete: null
     };
 
 })( jQuery, window, document );
