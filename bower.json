@@ -1,10 +1,13 @@
 {
   "name": "youtube-embed-jquery",
   "version": "1.0.0",
-  "main": [ "js/jquery.youtube-embed.js" ],
-  "ignore":
-  [
+  "main": [
+    "js/jquery.youtube-embed.js"
+  ],
+  "ignore": [
     "README*"
   ],
-  "dependencies": { "jquery": "latest" }
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
 }
