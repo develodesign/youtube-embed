@@ -45,7 +45,6 @@
                 this.imageContainerToRelative();
                 this.setupButton();
                 if(this.options.autoPosition) {
-                    this.imageContainerToRelative();
                     this.autoPosition();
                 }
             }
