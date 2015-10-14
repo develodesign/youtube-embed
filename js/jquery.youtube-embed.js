@@ -139,7 +139,7 @@
          * so that it has the correct amount of height.
          */
         imageContainerRatioPadding: function() {
-            this.$element.css( 'padding', '56.25%' );
+            this.$element.css( 'padding-bottom', '56.25%' );
         },
 
         /**
