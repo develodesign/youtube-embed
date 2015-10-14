@@ -27,6 +27,7 @@
             width: null,
             height: null,
             fillContainer: false,
+            showControls: false,
             onComplete: function(){ return true }
         };
         this.options = $.extend( {}, this._defaults, options );
@@ -154,7 +155,12 @@
                 autoplayParam = '&autoplay=1';
             }
 
-            var videoUrl = 'https://www.youtube.com/embed/' + this.getVideoId() + '?feature=player_detailpage&rel=0&frameborder=0&modestbranding=1&showinfo=0&controls=0'+autoplayParam;
+            var videoControls = 0;
+            if( this.options.showControls ) {
+                videoControls = 1;
+            }
+
+            var videoUrl = 'https://www.youtube.com/embed/' + this.getVideoId() + '?feature=player_detailpage&rel=0&frameborder=0&modestbranding=1&showinfo=0&controls='+videoControls+autoplayParam;
 
             var iframeStyling = '';
             if(this.options.fillContainer == true) {
