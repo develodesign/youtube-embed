@@ -20,10 +20,11 @@
         this.videoId = null;
         this._name = pluginName;
         this._defaults = {
+            autoPlay: true,
+            autoPosition: true,
             buttonClass: 'btn btn-primary',
             buttonText: 'Play Video',
-            autoplay: true,
-            autoPosition: true,
+            controls: 0,
             width: null,
             height: null,
             onComplete: function(){ return true }
@@ -141,7 +142,7 @@
             this.getIframeDimensions();
 
             var autoplayParam = '';
-            if( this.options.autoplay ) {
+            if( this.options.autoPlay ) {
                 autoplayParam = '&autoplay=1';
             }
 
@@ -149,6 +150,10 @@
 
             this.$iframe = $( '<iframe width="'+this.options.width+'" height="'+this.options.height+'" src="'+ videoUrl +'" frameborder="0" toolbars="0" allowfullscreen></iframe>' );
             this.$element.append( this.$iframe );
+
+            // Add controls
+            if( this.options.controls )
+                this.$iframe.prop( 'controls', this.options.controls );
         },
 
         /**
