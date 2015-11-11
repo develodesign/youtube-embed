@@ -27,6 +27,8 @@
             controls: 0,
             width: null,
             height: null,
+            fillContainer: false,
+            showControls: false,
             onComplete: function(){ return true }
         };
         this.options = $.extend( {}, this._defaults, options );
@@ -135,6 +137,14 @@
         },
 
         /**
+         * Add the 16:9 style padding onto our container
+         * so that it has the correct amount of height.
+         */
+        imageContainerRatioPadding: function() {
+            this.$element.css( 'padding-bottom', '56.25%' );
+        },
+
+        /**
          * Setups the youtube embed and adds it to the container $element
          */
         renderIframe: function()  {
@@ -146,9 +156,21 @@
                 autoplayParam = '&autoplay=1';
             }
 
-            var videoUrl = 'https://www.youtube.com/embed/' + this.getVideoId() + '?feature=player_detailpage&rel=0&frameborder=0&modestbranding=1&showinfo=0&controls=0'+autoplayParam;
+            var videoControls = 0;
+            if( this.options.showControls ) {
+                videoControls = 1;
+            }
 
-            this.$iframe = $( '<iframe width="'+this.options.width+'" height="'+this.options.height+'" src="'+ videoUrl +'" frameborder="0" toolbars="0" allowfullscreen></iframe>' );
+            var videoUrl = 'https://www.youtube.com/embed/' + this.getVideoId() + '?feature=player_detailpage&rel=0&frameborder=0&modestbranding=1&showinfo=0&controls='+videoControls+autoplayParam;
+
+            var iframeStyling = '';
+            if(this.options.fillContainer == true) {
+                iframeStyling = 'style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px;"';
+
+                this.imageContainerRatioPadding();
+            }
+
+            this.$iframe = $( '<iframe width="'+this.options.width+'" height="'+this.options.height+'" src="'+ videoUrl +'" '+iframeStyling+' frameborder="0" toolbars="0" allowfullscreen></iframe>' );
             this.$element.append( this.$iframe );
 
             // Add controls
