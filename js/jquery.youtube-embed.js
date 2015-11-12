@@ -24,7 +24,6 @@
             autoPosition: true,
             buttonClass: 'btn btn-primary',
             buttonText: 'Play Video',
-            controls: 0,
             width: null,
             height: null,
             fillContainer: false,
@@ -180,10 +179,6 @@
 
             this.$iframe = $( '<iframe width="'+this.options.width+'" height="'+this.options.height+'" src="'+ videoUrl +'" '+iframeStyling+' frameborder="0" toolbars="0" allowfullscreen></iframe>' );
             this.$element.append( this.$iframe );
-
-            // Add controls
-            if( this.options.controls )
-                this.$iframe.prop( 'controls', this.options.controls );
         },
 
         /**
