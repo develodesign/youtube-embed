@@ -60,8 +60,13 @@
          * this.$button by default needs a binding setup
          */
         setupBindings: function() {
+
             var plugin = this;
-            plugin.$element.on('click'+'.'+plugin._name, function() {
+
+            plugin.$element.on( 'click.' + plugin._name, function( event ) {
+
+                event.preventDefault();
+
                 plugin.getOnClickCallbacks.call(plugin);
             });
         },
@@ -126,6 +131,9 @@
             this.$element.css( 'position', 'relative' );
         },
 
+        /**
+         * Render the button
+         */
         setupButton: function() {
             this.$button =  $('<button/>')
                 .addClass( this.options.buttonClass )
