@@ -32,12 +32,18 @@
 			<img src="http://placehold.it/350x150" data-youtube-id="hHkKJfcBXcw">
 		</div>
 
+		<a href="#/" class="stop">
+			Stop Videos
+		</a>
+
 	</div>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="js/jquery.youtube-embed.js"></script>
 <script>
 	$( function(){
-		$( '.youtube-container' ).youtubeEmbed();
+		$( '.youtube-container' ).youtubeEmbed({
+			stopSelector: '.stop'
+		});
 	});
 </script>
 </body>

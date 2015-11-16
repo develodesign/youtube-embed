@@ -19,15 +19,19 @@
         this.$iframe = null;
         this.videoId = null;
         this._name = pluginName;
+
         this._defaults = {
+
             autoPlay: true,
             autoPosition: true,
             buttonClass: 'btn btn-primary',
             buttonText: 'Play Video',
-            width: null,
+            stopSelector: null,
             height: null,
             fillContainer: false,
             showControls: false,
+            width: null,
+
             onComplete: function(){ return true }
         };
         this.options = $.extend( {}, this._defaults, options );
@@ -68,6 +72,15 @@
 
                 plugin.getOnClickCallbacks.call(plugin);
             });
+
+            if( plugin.options.stopSelector ){
+
+                $( plugin.options.stopSelector ).on( 'click', function( event ){
+
+                    event.preventDefault();
+                    plugin.hideVideo();
+                } )
+            }
         },
 
         /**
@@ -104,6 +117,22 @@
 
             this.$image.hide();
             this.$button.hide();
+        },
+
+        /**
+         * Removes the video from the page and shows the button again.
+         */
+        hideVideo: function(){
+
+            if( this.$iframe ){
+
+                this.$iframe.remove();
+                this.$iframe = null;
+            }
+
+
+            this.$image.show();
+            this.$button.show();
         },
 
         /**
