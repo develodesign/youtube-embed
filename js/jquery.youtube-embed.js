@@ -166,7 +166,7 @@
         setupButton: function() {
             this.$button =  $('<' + this.options.buttonElement + '/>')
                 .addClass( this.options.buttonClass )
-                .text( this.options.buttonText );
+                .html( this.options.buttonText );
 
             this.$element.append(
                 this.$button
