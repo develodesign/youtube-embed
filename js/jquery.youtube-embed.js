@@ -25,6 +25,7 @@
             autoPlay: true,
             autoPosition: true,
             buttonClass: 'btn btn-primary',
+            buttonElement: 'button',
             buttonText: 'Play Video',
             stopSelector: null,
             height: null,
@@ -163,7 +164,7 @@
          * Render the button
          */
         setupButton: function() {
-            this.$button =  $('<button/>')
+            this.$button =  $('<' + this.options.buttonElement + '/>')
                 .addClass( this.options.buttonClass )
                 .text( this.options.buttonText );
 
