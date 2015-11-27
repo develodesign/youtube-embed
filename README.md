@@ -20,6 +20,7 @@ $('.myImageContainer').youtubeEmbed();
 $('.myImageContainer').youtubeEmbed({
     buttonClass: 'btn btn-primary',
     buttonText: 'Play Video',
+    buttonElement: 'button',
     autoplay: true,
     autoPosition: true,
     width: 560,
