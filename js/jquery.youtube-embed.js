@@ -32,6 +32,7 @@
             fillContainer: false,
             showControls: false,
             width: null,
+            toolbars: false,
 
             onComplete: function(){ return true }
         };
@@ -207,7 +208,8 @@
                 this.imageContainerRatioPadding();
             }
 
-            this.$iframe = $( '<iframe width="'+this.options.width+'" height="'+this.options.height+'" src="'+ videoUrl +'" '+iframeStyling+' frameborder="0" toolbars="0" allowfullscreen></iframe>' );
+            var showToolbars = this.options.showControls ? 1 : 0;
+            this.$iframe = $( '<iframe width="'+this.options.width+'" height="'+this.options.height+'" src="'+ videoUrl +'" '+iframeStyling+' frameborder="0" toolbars="'+showToolbars+'" allowfullscreen></iframe>' );
             this.$element.append( this.$iframe );
         },
 
