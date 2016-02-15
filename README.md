@@ -25,6 +25,7 @@ $('.myImageContainer').youtubeEmbed({
     autoPosition: true,
     width: 560,
     height: 315,
+    toolbars: true,
     /*onComplete: function() {
      // On completed state i can fire other events
      }*/

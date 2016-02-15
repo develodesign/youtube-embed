@@ -1,6 +1,6 @@
 {
   "name": "youtube-embed-jquery",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": [
     "js/jquery.youtube-embed.js"
   ],
